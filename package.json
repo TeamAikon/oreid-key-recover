@@ -11,5 +11,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@open-rights-exchange/chainjs": "^3.0.8",
+    "fs": "0.0.1-security"
+  },
+  "devDependencies": {
+    "@types/node": "^15.14.0"
+  }
 }
