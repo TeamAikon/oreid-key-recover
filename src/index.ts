@@ -27,14 +27,17 @@ async function start() {
 
   const decrypted = []
   for (const key of keys) {
-    const { chain, privayeKeys } = key
+    const { chain, privateKeys } = key
+    console.log('chain: ', chain)
     const chainjs = getChain(chain)
-    const decryptedKey = privayeKeys.map((pk: any) => {
-      const { privateKeyEncryped, privateKeyEncryptionSalt } = pk
+
+    const decryptedKey = privateKeys.map((pk: any) => {
+      const { privateKeyEncryped, privateKeyEncryptionSalt } = pk.encryptedKey
       const decryptedPrivateKey = chainjs.decryptWithPassword(privateKeyEncryped, password, { salt: privateKeyEncryptionSalt })
       return { ...pk, decryptedPrivateKey }
     })
     decrypted.push(decryptedKey)
+    console.log('decrypted: ', decryptedKey)
   }
   console.log(decrypted)
 
