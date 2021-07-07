@@ -2,6 +2,10 @@ import path from 'path';
 import * as fs from 'fs';
 import { ChainFactory, ChainType } from '@open-rights-exchange/chainjs'
 
+import reader from 'readline-sync'
+
+
+
 function getChain(chain: string) {
   switch (chain) {
     case 'eos':
@@ -31,31 +35,35 @@ function getChain(chain: string) {
 //   }
 // ]
 
+
+
 async function start() {
   const filePath = process.argv[2]
-  const password = process.argv[3] // TODO: make convert it to ask input runtime
   const rawdata = fs.readFileSync(filePath);
   const accountJson = JSON.parse(rawdata.toString())
   const { accountName, keys } = accountJson
   console.log('Recovery running for account: ', accountName)
 
+  const password = reader.question("Password: ",{ hideEchoBack: true });
+  console.log('Your Keys:')
   const decrypted = []
   for (const key of keys) {
     const { chain, privateKeys } = key
-    console.log('chain: ', chain)
+    console.log('\nChain ==> ', (chain as string).toUpperCase())
     const chainjs = getChain(chain)
-
     const decryptedKey = privateKeys.map((pk: any) => {
-      const { privateKeyEncryped, privateKeyEncryptionSalt } = pk.encryptedKey
-      const decryptedPrivateKey = chainjs.decryptWithPassword(privateKeyEncryped, password, { salt: privateKeyEncryptionSalt })
+      console.log(` Account: ${pk.account}`)
+      const { publicKey, privateKeyEncryped, encryptionOptions } = pk.encryptedKey 
+      const encrypOptions = getOptionsForChain(encryptionOptions, chain)
+      const decryptedPrivateKey = chainjs.decryptWithPassword(chainjs.toSymEncryptedDataString(privateKeyEncryped), password, encrypOptions)
+      console.log('     Public Key: ', publicKey)
+      console.log('     Private Key: ', decryptedPrivateKey)
       return { ...pk, decryptedPrivateKey }
     })
     decrypted.push(decryptedKey)
-    console.log('decrypted: ', decryptedKey)
   }
-  console.log(decrypted)
 
-
+//Brandon14!
   // // require command-line switch for --network (-n) 'algorand', 'eos', 'ethereum'
   // // Prompt for user to enter password
   // // load credential from local file - ./oreid-backup.json
