@@ -1,0 +1,49 @@
+{
+	"walletAccountName": "ore1s2ylcwy3",
+	"accounts": [{
+		"chain": "EOS",
+		"chainAccounts": [{
+			"chainAccount": "ore1s2ylcwy3",
+			"chainNetwork": "ore_test",
+			"keys": [{
+				"publicKey": "EOS6BdmTtfPkPyQu523yKrrC3GFmKp5bRg3VY95PnyBCRNpJiVnPD",
+				"privateKeyEncrypted": "{\"iv\":\"5bRsk5HZiLCiG2ecgrbUtw==\",\"v\":1,\"iter\":1048576,\"ks\":128,\"ts\":64,\"mode\":\"gcm\",\"adata\":\"\",\"cipher\":\"aes\",\"ct\":\"aYvpgmWqgGu0ha4ZBM33vBOvsSczWQdOnvxgKhYMJfJR1x9YnnuUhz4lQ4YsB4e86bftP/h/uZH9ZW4=\"}",
+				"iterations": 1048576,
+				"salt": "cc5f6623-c620-4251-ac1d-a1583e2911ae"
+			}]
+		}, {
+			"chainAccount": "ore1s2ylcwy3",
+			"chainNetwork": "eos_kylin",
+			"keys": [{
+				"publicKey": "EOS7zLehD77gmGDwVnVz3Y1R4G8DfagRpV56iZ3QHUC8Bcg2qLd1p",
+				"privateKeyEncrypted": "{\"iv\":\"XcxsHeF4dw6Jlo21j+2atg==\",\"v\":1,\"iter\":1048576,\"ks\":128,\"ts\":64,\"mode\":\"gcm\",\"adata\":\"\",\"cipher\":\"aes\",\"ct\":\"ih1nVmhbFENocejHmQFOVcQKEzYgjyCuOrbHURJu1IvrdbeCVUIPgEMSQGvku50Xz4RV6D7bfGAbZ3Q=\"}",
+				"iterations": 1048576,
+				"salt": "be61f662-7b7b-4182-8068-955c737a66a8"
+			}]
+		}]
+	}, {
+		"chain": "Ethereum",
+		"chainAccounts": [{
+			"chainAccount": "0x2c4d4e23663c03716e4c7c52a5239f5847332772",
+			"chainNetwork": "eth_ropsten",
+			"keys": [{
+				"publicKey": "0xca63989aa841bff1b79ed97e3f59db0754f16a04ea1081edccf5ecf56ac799636e6eecd3452c9852ff86b27adaa0a8d6bcceff9a7c6be4292c773f3d5a9ee1aa",
+				"privateKeyEncrypted": "{\"iv\":\"bxdLHHfcm95R5TZU/9w8OA==\",\"v\":1,\"iter\":1048576,\"ks\":128,\"ts\":64,\"mode\":\"gcm\",\"adata\":\"\",\"cipher\":\"aes\",\"ct\":\"Nl6RZnliIPvyi3X16HoJSKNRuvQuR+PlahGl7QxXkDljz7K4/birQhKY0J4VTIhJupBc4rV1iGp0RK+H0Q4obLmJ1uyL31Pc0Po=\"}",
+				"iterations": 1048576,
+				"salt": "5330329a-9f78-4eda-a92b-f0dcc94f0a3f"
+			}]
+		}]
+	}, {
+		"chain": "Algorand",
+		"chainAccounts": [{
+			"chainAccount": "ZXWUOOZZ3T54VNPPZJNRQKMRZNIIAKLVIWJC2HJU67DVQP23EFQQEZPXKU",
+			"chainNetwork": "algo_test",
+			"keys": [{
+				"publicKey": "cded473b39dcfbcab5efca5b182991cb5080297545922d1d34f7c7583f5b2161",
+				"privateKeyEncrypted": "KVLQGfWxJ61UH4tXd5VQVre+P7Wh2HpdPbXuo3m2c8ZtvZatf8CO/8+apeayQeuONyWXhP13tqpxwOLA+I9lL1cPfydBgDCC8WjnjlUsslYtuR/LQB4rpJ42yEe6ogYnvmSC6yTgPEa158fmVASs7NhhiKcO+grUfh5U/dzySfO5tX4e7FZep8sq+DElihV7F+/OfQbCt4BO6tSqlkJ2pTsKlFtnXZ1B",
+				"iterations": 1048576,
+				"salt": "fe555700-178d-4327-ab37-0b1aeb7c0efc"
+			}]
+		}]
+	}]
+}
