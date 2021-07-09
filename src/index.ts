@@ -1,10 +1,6 @@
-import path from 'path';
 import * as fs from 'fs';
 import { ChainFactory, ChainType } from '@open-rights-exchange/chainjs'
-
 import reader from 'readline-sync'
-
-
 
 function getChain(chain: string) {
   switch (chain) {
@@ -41,41 +37,63 @@ function getOptionsForChain(iterations: number, salt: string, chain: string) {
   }
 }
 
-
-
 async function start() {
-  const filePath = process.argv[2]
+  const [, , fileNameArg] = process.argv
+  let accountJson
+  let accounts
+  if (!fileNameArg) {
+    console.log('Please include a filename. Example: oreid-key-recover oreid-backup.json')
+    process.exit()
+  }
+
+  if (!fs.existsSync(fileNameArg)) {
+    console.log(`Cant find file ${fileNameArg}`)
+    process.exit()
+  }
+
+  try {
+    const rawdata = fs.readFileSync(fileNameArg);
+    const accountJson = JSON.parse(rawdata.toString())
+    ;({ accounts } = accountJson)
+    if(!accounts) throw new Error('Bad format')
+  }
+  catch (error) {
+    console.log(`Problem: Cant find backup info in ${fileNameArg}. Make sure it is an ORE ID export file (JSON format)`)
+    process.exit()
+  }
 
   try{
-    const rawdata = fs.readFileSync(filePath);
-    const accountJson = JSON.parse(rawdata.toString())
-    const { walletAccountName, accounts } = accountJson
-    console.log('Recovery running for account: ', walletAccountName)
-  
-    const password = reader.question("Password: ",{ hideEchoBack: true });
+    const password = reader.question("ORE ID Wallet Password: ", { hideEchoBack: true });
+    console.log('accounts:', accounts)
     console.log('Your Keys:')
-    const decrypted = []
+    // decrypt and show keys
     for (const account of accounts) {
       const { chain, chainAccounts } = account
       console.log('\nChain ==> ', (chain as string).toUpperCase())
       const chainjs = getChain(chain)
-      const decryptedKey = chainAccounts.map((chAcc: any) => {
+      chainAccounts.map((chAcc: any) => {
         const { chainAccount, keys, chainNetwork } = chAcc
         console.log(` Chain Account: ${chainAccount} (network: ${chainNetwork})`)
         keys.forEach( (key: any) => {
           const { publicKey, privateKeyEncrypted, iterations, salt } = key 
           const encrypOptions = getOptionsForChain(iterations, salt, chain)
-          const decryptedPrivateKey = chainjs.decryptWithPassword(chainjs.toSymEncryptedDataString(privateKeyEncrypted), password, encrypOptions)
-          console.log('     Public Key: ', publicKey)
+          let decryptedPrivateKey
+          try {
+            decryptedPrivateKey = chainjs.decryptWithPassword(chainjs.toSymEncryptedDataString(privateKeyEncrypted), password, encrypOptions)
+          } catch(error) {
+            console.log('Problem: Cant decrypt at least one backup key. Make sure your password is correct')
+            process.exit()
+          }
           console.log('     Private Key: ', decryptedPrivateKey)
         });
       })
     }
   } catch (error) {
+    console.log(`Problem: Something happened trying to recover backup`)
     console.log(error)
   }
 }
 
 (async function () {
   await start()
-})();
+})()
