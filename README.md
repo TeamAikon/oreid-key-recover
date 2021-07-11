@@ -31,13 +31,13 @@ If you get 'FATAL ERROR: Ineffective mark-compacts near heap limit Allocation fa
 # How to recover keys from an encrypted Oreid backup file
 
 ### Setup
-- Download or receive a key backup file via email (oreid-backup.json)
+- Download or receive a key backup file via email (e.g. oreid_key_backup.json)
 - Download a password decrypt program for your operating system (oreid-key-recover-macos, oreid-key-recover-linux, OR oreid-key-recover-win.exe )
 <br><br>
 ### To run on Mac
 - Open a command prompt
 - Run ```./oreid-key-recover-macos {backup filename}```
-- Enter you wallet password: nnnn
+- Enter your wallet password
 - Your keys will be shown - protect your keys
 
 ### To run on Windows
