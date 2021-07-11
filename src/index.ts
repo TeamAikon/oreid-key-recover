@@ -64,7 +64,6 @@ async function start() {
 
   try{
     const password = reader.question("ORE ID Wallet Password: ", { hideEchoBack: true });
-    console.log('accounts:', accounts)
     console.log('Your Keys:')
     // decrypt and show keys
     for (const account of accounts) {
