@@ -4,11 +4,15 @@ Recover keys from oreid key backup file
 
 # Setup
 
+```
 npm install --global pkg
+nvm install 14.16.1
+```
 
 # To build executable packages
 
-The pkg library requires Node 14 or higher. Use can use ```nvm current``` to see if you are running Node 14, if not you can switch to it using nvm
+**Node 14 or higher Required** by pkg library.<br>
+Use ```nvm current``` to see if you are running Node 14, if not you can switch to it using nvm.
 
 ```
 nvm use node v14.16.1
