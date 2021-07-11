@@ -80,6 +80,7 @@ async function start() {
           let decryptedPrivateKey
           try {
             decryptedPrivateKey = chainjs.decryptWithPassword(chainjs.toSymEncryptedDataString(privateKeyEncrypted), password, encrypOptions)
+            console.log('     Public Key: ', publicKey)
           } catch(error) {
             console.log('Problem: Cant decrypt at least one backup key. Make sure your password is correct')
             process.exit()
