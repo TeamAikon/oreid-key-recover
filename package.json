@@ -17,7 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@open-rights-exchange/chainjs": "^3.0.8",
+    "@open-rights-exchange/chainjs": "^3.4.1",
     "fs": "0.0.1-security",
     "readline-sync": "^1.4.10"
   },
