@@ -84,6 +84,7 @@ async function start() {
             console.log('Problem: Cant decrypt at least one backup key. Make sure your password is correct')
             process.exit()
           }
+          console.log('     Public Key: ', publicKey)
           console.log('     Private Key: ', decryptedPrivateKey)
         });
       })
